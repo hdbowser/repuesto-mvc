@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Familias";
+    ViewBag.inventario = "active";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-user"></i> Familias</h1>
+        <p>Busqueda y creaci&oacute;n de familia</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#">Familias</a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="row">
+                <div class="col-md-6">
+                    <input data-bind="textInput: busqueda" class="form-control" placeholder="Busqueda" id="txtBusqueda" />
+                </div>
+                <div class="col-md-6 mt-2 mt-md-0">
+                    <button class="btn btn-success ml-2" data-toggle="modal" data-target="#modalRegistroFamilia">Nuevo</button>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 table-responsive mt-4">
+                    <table class="table table-striped">
+                        <tbody data-bind="foreach: familias">
+                            <tr>
+                                <td data-bind="text: Nombre">Victor</td>
+
+                                <td><a>Editar</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--MODALES-->
+<div class="modal fade" id="modalRegistroFamilia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registro de Familia</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form data-bind=" ">
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" required name="Nombre" />
+                        </div>
+                    </div>
+                    <div class="modal-footer row mt-2">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Crear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/familia/index.js"></script>
+}

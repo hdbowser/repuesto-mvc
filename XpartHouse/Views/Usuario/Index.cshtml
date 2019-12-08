@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Usuarios";
+    ViewBag.usuarios = "active";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-user"></i> Usuarios</h1>
+        <p>Busqueda y creaci&oacute;n de usuarios</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#">Usuarios</a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="row">
+                <div class="col-md-6">
+                    <input data-bind="textInput: busqueda" class="form-control" placeholder="Busqueda" id="txtBusqueda" />
+                </div>
+                <div class="col-md-6 mt-2 mt-md-0">
+                    <button class="btn btn-primary">Buscar</button>
+                    <button class="btn btn-success ml-2" data-toggle="modal" data-target="#modalRegistroUsuario">Nuevo</button>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 table-responsive mt-4">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Usuario</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: usuarios">
+                            <tr>
+                                <td data-bind="text: Nombre">Victor</td>
+                                <td  data-bind="text: Apellidos">Brito</td>
+                                <td  data-bind="text: Email">hdbowser</td>
+                                <td><a data-bind="attr:{href: '/Usuario/Editar/'+ IdContacto}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--MODALES-->
+<!-- Modal Regostro -->
+<div class="modal fade" id="modalRegistroUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registro de Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form data-bind="submit: crearUsuario">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" required name="Nombre" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Apellidos</label>
+                            <input type="text" class="form-control" required name="Apellidos" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Email</label>
+                            <input type="email" class="form-control" required name="Email" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Contrase&ntilde;a</label>
+                            <input type="password" class="form-control" name="Password" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Rol</label>
+                            <select class="form-control" name="IdRol" data-bind="options: roles, optionsCaption: '- Seleccionar -', optionsValue: 'IdRol', optionsText: 'Nombre'">
+                                <!-- Contenido generado por JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Crear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/usuario/index.js?v1.0"></script>
+}

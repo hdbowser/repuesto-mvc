@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Compras";
+    ViewBag.compra = "active";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-user"></i> Compras</h1>
+        <p>Busqueda y creaci&oacute;n de compras</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#">Compras</a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="row">
+                <div class="col-md-6">
+                    <input data-bind="textInput: busqueda" class="form-control" placeholder="Busqueda" id="txtBusqueda" />
+                </div>
+                <div class="col-md-6 mt-2 mt-md-0">
+                    <button class="btn btn-primary">Buscar</button>
+                    <a href="/Compra/Editar" class="btn btn-success ml-2" >Nuevo</a>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 table-responsive mt-4">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Proveedor</th>
+                                <th>Fecha</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: compras">
+                            <tr>
+                                <td data-bind="text: Proveedor"></td>
+                                <td data-bind="text: Fecha"></td>
+                                <td><a data-bind="attr: {href: '/Compra/Editar/' + IdCompra}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/compra/index.js?v1.0"></script>
+}

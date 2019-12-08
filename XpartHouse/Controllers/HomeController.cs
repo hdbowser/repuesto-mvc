@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using XpartHouse.Models;
 
 namespace XpartHouse.Controllers
 {
@@ -10,20 +11,21 @@ namespace XpartHouse.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var usuario = XpartHouse.Models.Authorization.GetLoggedUser(this.HttpContext);
+            if (usuario.IdContacto > 0)
+            {
+                ViewBag.usuario = usuario;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
-        public ActionResult About()
+        public ActionResult Login(bool? error)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.showError = (error != null) ? "d-block" : "d-none";
             return View();
         }
     }
